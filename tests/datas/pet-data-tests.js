@@ -65,7 +65,7 @@ describe("Test pet data", () => {
         it("Expect to return the pet", (done) => {
             data.getById(existingPetId)
                 .then((actualPet) => {
-                    expect(actualPet).to.equal(pet[0]);
+                    expect(actualPet).to.equal(pet);
                     done();
                 })
                 .catch((err) => {});
@@ -131,7 +131,5 @@ describe("Test pet data", () => {
                     done();
                 });
         });
-
-        //other properties here
     });
 });
