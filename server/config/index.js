@@ -3,12 +3,6 @@
 const path = require("path");
 const rootPath = path.join(__dirname, "/../..");
 console.log(rootPath);
-// app.use(function(req, res, next) {
-//   req.rootPath = __dirname;
-//   next();
-// });
-
-// app.use('/myroute', myRoute);
 
 const env = process.env.NODE_ENV || 'development';
 const config = require('./config')[env];

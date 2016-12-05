@@ -30,39 +30,6 @@ module.exports = function(models) {
                 });
             });
         },
-		// getPetByUsername(username) {
-		// 	return new Promise(function(resolve, reject) {
-		// 		User.findOne({ "username": username }, function(err, result) {
-		// 			if (err) {
-		// 				return reject(err);
-		// 			}
-
-		// 			return resolve(result);
-		// 		});
-		// 	});
-		// },
-		// getPetsByUsername(username) {
-		// 	return new Promise(function(resolve, reject) {
-		// 		User.findOne({ "username": username }, function(err, result) {
-		// 			if (err) {
-		// 				return reject(err);
-		// 			}
-
-		// 			return resolve(result);
-		// 		});
-		// 	});
-		// },
-		//getPets() {
-		//	return new Promise(function(resolve, reject) {
-		//		Pet
-		//			.find(function(err, result) {
-		//				if (err) {
-		//					return reject(err);
-		//				}
-		//				return resolve(result);
-		//			});
-		//	});
-		//},
 		create(data) {
 			return new Promise((resolve, reject) => {
 				let pet = new Pet ({
@@ -84,17 +51,5 @@ module.exports = function(models) {
 				});
 			});
 		},
-		// update(id, update, options) {
-		//     return new Promise((resolve, reject) => {
-		//         User.findOneAndUpdate({ "_id": id }, update,
-		//             (err, user) => {
-		//                 if (err) {
-		//                     return reject(err);
-		//                 }
-
-		//                 return resolve(user);
-		//             });
-		//     });
-		// }
 	};
 };

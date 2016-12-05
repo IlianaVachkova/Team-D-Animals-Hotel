@@ -117,8 +117,6 @@ function registerHotel(req, res) {
             res.end();
         });
 
-    
-    
     //TODO: Update user (add new hotel to his list hotels)
 }
 
@@ -128,7 +126,6 @@ function registerService(req, res) {
 	}
 	const body = req.body;
 	var user = req.user;
-	//var hotel = req.hotel;
 		
 	let newServiceData = {
 		name: body.name,
@@ -145,7 +142,6 @@ function registerService(req, res) {
 		})
 		.catch((err) => {
 			res.status(500);
-            //now it is commented not to stop the server
 			//res.send(500, "Registration failed\r\n");
 			res.end();
 		});
