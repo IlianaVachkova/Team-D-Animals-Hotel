@@ -61,17 +61,5 @@ module.exports = function(models) {
 				});
 			});
 		},
-		// update(id, update, options) {
-		//     return new Promise((resolve, reject) => {
-		//         User.findOneAndUpdate({ "_id": id }, update,
-		//             (err, user) => {
-		//                 if (err) {
-		//                     return reject(err);
-		//                 }
-
-		//                 return resolve(user);
-		//             });
-		//     });
-		// }
 	};
 };
