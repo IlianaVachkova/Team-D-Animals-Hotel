@@ -5,16 +5,6 @@ const sinonModule = require("sinon");
 
 let expect = chai.expect;
 
-//describe("Test environment", () => {
-//    it("Expect to pass", ()=>{
-//        expect(1).to.equal(1);
-//    });
-//
-//    it("Expect to fail", ()=>{
-//        expect(1).to.equal(2);
-//    });
-//});
-
 describe("Test pet data", () => {
     let sinon;
     beforeEach(() => {
@@ -24,6 +14,7 @@ describe("Test pet data", () => {
     class Pet {
         constructor(properties) {
             this.name = properties.name;
+            this.owner = properties.owner;
             this.weight = properties.weight;
             this.sex = properties.sex;
             this.breed = properties.breed;
@@ -71,25 +62,27 @@ describe("Test pet data", () => {
             Pet.findOne.restore();
         });
 
-        it("Expect to return the pet", done => {
+        it("Expect to return the pet", (done) => {
             data.getById(existingPetId)
-                .then((actualPet => {
+                .then((actualPet) => {
                     expect(actualPet).to.equal(pet[0]);
                     done();
-                }));
+                })
+                .catch((err) => {});
         });
 
-        it("Expect to return null, when no pet with the id", done => {
+        it("Expect to return null, when no pet with the id", (done) => {
             data.getById(138)
-                .then((actualPet => {
+                .then((actualPet) => {
                     expect(actualPet).to.be.null;
                     done();
-                }));
+                })
+                .catch((err) => {});
         });
     });
 
     describe("getPets()", () => {
-        it("Expect to return 2 pet", done => {
+        it("Expect to return 2 pet", (done) => {
             //arrange
             let pets = ["Tobbi", "Kitty"];
             sinon.stub(Pet, "find", (_, cb) => {
@@ -98,34 +91,12 @@ describe("Test pet data", () => {
 
             //act
             data.getPets()
-                .then(actualPets => {
+                .then((actualPets) => {
                     //assert
                     expect(actualPets).to.eql(pets);
                     done();
                 })
-                .catch(err => {
-                    console.log(err);
-                });
-        });
-    });
-
-    describe("getPets()", () => {
-        it("Expect all chained methods to be called - find().select().exec()", done => {
-            let findSpy = sinon.spy(Pet, "find");
-            let selectSpy = sinon.spy(Pet, "select");
-            let execSpy = sinon.spy(Pet, "exec");
-
-            data.getPets();
-
-            expect(findSpy.calledOnce).to.be.true;
-            expect(selectSpy.calledOnce).to.be.true;
-            expect(execSpy.calledOnce).to.be.true;
-
-            done();
-
-            findSpy.restore();
-            selectSpy.restore();
-            execSpy.restore();
+                .catch((err) => {});
         });
     });
 
@@ -134,26 +105,27 @@ describe("Test pet data", () => {
             sinon.restore();
         });
 
-        it("Expect to save the pet", done => {
+        it("Expect to save the pet", (done) => {
             sinon.stub(Pet.prototype, "save", cb => {
                 cb(null);
             });
 
             let name= "Tobbi";
-            data.create(name, "0.33", "male", "dogs", "Akita", 9)
-                .then(actualPet => {
+            data.create(name, "tobbi_owner", "0.33", "male", "dogs", "Akita", 9)
+                .then((actualPet) => {
                     expect(actualPet.name).to.equal(name);
                     done();
-                });
+                })
+                .catch((err) => {});
         });
 
-        it("Expect to fail, when name is empty", done => {
+        it("Expect to fail, when name is empty", (done) => {
             sinon.stub(Pet.prototype, "save", cb => {
                 cb(null);
             });
 
             let name = "";
-            data.create(name, "0.33", "male", "dogs", "Akita", 9)
+            data.create(name, "tobbi_owner", "0.33", "male", "dogs", "Akita", 9)
                 .catch(err => {
                     expect(err).not.to.be.null;
                     done();
