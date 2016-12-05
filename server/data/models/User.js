@@ -16,10 +16,6 @@ const userSchema = mongoose.Schema({
     salt: { type: String, required: true },
     phoneNumber: String,
     email: { type: String, required: true},
-    //initiatives: [{
-    //    initiative: String,
-    //    season: String
-    //}],
     avatar: { type: String, default: defaultAvatar },
     pets: []
 });
